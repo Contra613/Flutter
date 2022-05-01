@@ -25,6 +25,7 @@ class HttpApp extends StatefulWidget {
 
 class _HttpAppState extends State<HttpApp> {
   String result = '';
+  // ? : Null safety
   List? data;
   TextEditingController? _editingController;
   ScrollController? _scrollController;
@@ -114,12 +115,13 @@ class _HttpAppState extends State<HttpApp> {
     );
   }
 
+  // async와 awit 키워드를 사용하여 비동기 처리 구현
   Future<String> getJSONData() async {
     var url =
         'https://dapi.kakao.com/v3/search/book?'
         'target=title&page=$page&query=${_editingController!.value.text}';
     var response = await http.get(Uri.parse(url),
-        headers: {"Authorization" : "KakaoAK e583cf2ad66db3f8f92ce58a67516014"});
+        headers: {"Authorization" : "KakaoAK [키 코드]"});
     setState(() {
       var dataConvertedToJSON = json.decode(response.body);
       List result = dataConvertedToJSON['documents'];
